@@ -72,26 +72,17 @@ python -m streamlit run app/main.py
 1. Push your repository to GitHub (ensure `.env` is ignored by `.gitignore`).
 2. Go to [share.streamlit.io](https://share.streamlit.io) and connect your GitHub account.
 3. Click **"New app"** and select your repository, branch (`main`), and set **Main file path** to `app/main.py`.
-4. In **Advanced Settings > Secrets**, paste your secrets in TOML format:
+4. In **Advanced settings**, select Python 3.11.
+5. In the app's **Settings > Secrets**, add your Ollama key in TOML format:
+
    ```toml
-   OLLAMA_API_URL = "https://ollama.com"
-   OLLAMA_MODEL = "gemma4:31b"
-   OLLAMA_API_KEY = "your-api-key-here"
-
-   # Optional: Database connection
-   DB_DIALECT = "postgresql"
-   DB_HOST = "your-db-host.com"
-   DB_PORT = "5432"
-   DB_NAME = "postgres"
-   DB_USER = "postgres"
-   DB_PASSWORD = "your-db-password"
-
-   # Optional: Google Sheets
-   GOOGLE_APPLICATION_CREDENTIALS = ""
+   OLLAMA_API_KEY = "your-ollama-api-key"
    ```
-5. Click **Deploy**. The app will install from `requirements.txt` and `packages.txt` automatically.
 
-> **Note**: Streamlit Cloud has ~1 GB RAM. Datasets over ~100 MB may hit memory limits. The `storage/` directory uses `/tmp` on cloud (ephemeral per session).
+   Do not paste `.env` file syntax into the Secrets editor. Streamlit exposes root-level secrets to the app, and NEXUS reads the key from Streamlit secrets or the environment. Add optional `OLLAMA_API_URL` or `OLLAMA_MODEL` values in the same TOML format if you need to override their defaults.
+6. Click **Deploy**. The app installs dependencies from `requirements.txt` and `packages.txt`.
+
+> **Note**: Streamlit Cloud has limited memory; large datasets can exceed available resources. Uploaded datasets and generated files use temporary local storage and should not be treated as persistent.
 
 ### Option 2: Docker Container (Render, Railway, AWS ECS, GCP Cloud Run)
 ```bash
