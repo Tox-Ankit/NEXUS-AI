@@ -5,13 +5,25 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+def _get_secret(key: str, default: str = "") -> str:
+    """Resolve a config value: Streamlit Cloud secrets → env var → default."""
+    try:
+        import streamlit as st
+        if key in st.secrets:
+            return str(st.secrets[key])
+    except Exception:
+        pass
+    return os.getenv(key, default)
+
+
 # Configuration — all configurable through environment variables.
 # OLLAMA_API_URL : Base URL for Ollama Cloud (or local fallback).
 # OLLAMA_MODEL   : Model name to use (e.g. "gemma3:12b", "llama3.1:8b", "qwen3:8b").
 # OLLAMA_API_KEY : Bearer token for Ollama Cloud authentication.
-OLLAMA_API_URL = os.getenv("OLLAMA_API_URL", "https://ollama.com")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma4:31b")
-OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY", "")
+OLLAMA_API_URL = _get_secret("OLLAMA_API_URL", "https://ollama.com")
+OLLAMA_MODEL = _get_secret("OLLAMA_MODEL", "gemma4:31b")
+OLLAMA_API_KEY = _get_secret("OLLAMA_API_KEY", "")
 
 
 class LLMService:

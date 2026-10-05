@@ -70,10 +70,28 @@ python -m streamlit run app/main.py
 
 ### Option 1: Streamlit Community Cloud (Recommended & Free)
 1. Push your repository to GitHub (ensure `.env` is ignored by `.gitignore`).
-2. Go to [share.streamlit.io](https://share.streamlit.io) and connect your repository.
-3. Set **Main file path** to `app/main.py`.
-4. In **Advanced Settings > Secrets**, paste the contents of your `.env` (such as `OLLAMA_API_KEY`).
-5. Click **Deploy**.
+2. Go to [share.streamlit.io](https://share.streamlit.io) and connect your GitHub account.
+3. Click **"New app"** and select your repository, branch (`main`), and set **Main file path** to `app/main.py`.
+4. In **Advanced Settings > Secrets**, paste your secrets in TOML format:
+   ```toml
+   OLLAMA_API_URL = "https://ollama.com"
+   OLLAMA_MODEL = "gemma4:31b"
+   OLLAMA_API_KEY = "your-api-key-here"
+
+   # Optional: Database connection
+   DB_DIALECT = "postgresql"
+   DB_HOST = "your-db-host.com"
+   DB_PORT = "5432"
+   DB_NAME = "postgres"
+   DB_USER = "postgres"
+   DB_PASSWORD = "your-db-password"
+
+   # Optional: Google Sheets
+   GOOGLE_APPLICATION_CREDENTIALS = ""
+   ```
+5. Click **Deploy**. The app will install from `requirements.txt` and `packages.txt` automatically.
+
+> **Note**: Streamlit Cloud has ~1 GB RAM. Datasets over ~100 MB may hit memory limits. The `storage/` directory uses `/tmp` on cloud (ephemeral per session).
 
 ### Option 2: Docker Container (Render, Railway, AWS ECS, GCP Cloud Run)
 ```bash
