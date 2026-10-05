@@ -1,0 +1,49 @@
+# Environment variables & secrets (NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*service_account*.json
+*credentials*.json
+*client_secret*.json
+
+# Python & Caching
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Data & Analytical Storage (keep test sample, ignore generated datasets)
+data/*
+!data/test_sales.csv
+storage/*
+!storage/.gitkeep
+reports/*
+!reports/.gitkeep
+models/*
+!models/.gitkeep
+*.parquet
+*.sqlite
+*.db
+*.csv.gz
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

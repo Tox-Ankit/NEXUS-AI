@@ -1,0 +1,13 @@
+product,category,price,units_sold,revenue,month
+Widget A,Electronics,29.99,150,4498.50,January
+Widget B,Electronics,49.99,80,3999.20,January
+Gadget X,Home,19.99,200,3998.00,January
+Gadget Y,Home,39.99,90,3599.10,January
+Widget A,Electronics,29.99,170,5098.30,February
+Widget B,Electronics,49.99,95,4749.05,February
+Gadget X,Home,19.99,180,3598.20,February
+Gadget Y,Home,39.99,110,4398.90,February
+Widget A,Electronics,29.99,190,5698.10,March
+Widget B,Electronics,49.99,120,5998.80,March
+Gadget X,Home,19.99,210,4197.90,March
+Gadget Y,Home,39.99,130,5198.70,March
