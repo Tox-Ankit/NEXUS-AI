@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+repository_root = str(Path(__file__).resolve().parent.parent)
+if repository_root not in sys.path:
+    sys.path.insert(0, repository_root)
+
 import streamlit as st
 import polars as pl
 from app.chatbot.ui import render_chat_panel
